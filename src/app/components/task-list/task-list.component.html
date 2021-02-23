@@ -1,0 +1,66 @@
+<div class="centered-container" fxLayout="row" fxLayoutAlign="center center">
+    <div class="main-container"  fxLayout="row" fxLayoutAlign="center center" fxFlex.lt-md="70%"
+        fxLayout.lt-md="column" fxLayoutAlign.lt-md=""
+    >
+        <div class="lists-container" fxFlex="30%" fxLayout="column" fxLayoutAlign="space-between start" fxHide.lt-md>
+            <div class="lists-subcontainer">            
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <h1>Lists</h1>
+                    <mat-icon>settings</mat-icon>
+                </div>
+                
+                <mat-selection-list #lists [multiple]="false">
+                    <mat-list-option *ngFor="let list of listOfLists" [value]="list">
+                    {{list}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+              <button mat-flat-button color="success" class="add-list-button"><mat-icon>add</mat-icon>List</button>
+
+        </div>
+
+        <div class="lists-container-md" fxLayout="row" fxLayoutAlign="space-between center" fxHide.gt-sm>
+            
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Lists</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                
+            
+
+            <button mat-mini-fab color="success" aria-label="Example icon button with a add icon">
+                <mat-icon>add</mat-icon>
+              </button>
+
+        </div>
+
+
+
+        <div class="tasks-container" fxFlex="70%" fxLayout="column" fxLayoutAlign="space-between end" fxLayout.lt-md="column-reverse">
+            <div class="tasks-subcontainer">
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <h1>Tasks</h1>
+                    <mat-icon>settings</mat-icon>
+                </div>
+
+                <mat-selection-list  #tasks [multiple]="true">
+                    <mat-list-option *ngFor="let task of listOfTasks" class="task" [value]="task">
+                    {{task}}
+                    </mat-list-option>
+                </mat-selection-list>
+
+            </div>
+
+            <button mat-mini-fab color="success" aria-label="Example icon button with a add icon">
+                <mat-icon>add</mat-icon>
+              </button>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+.centered-container {
+    width: 100%;
+    height: 100%;
+    
+}
+
+.main-container{
+    min-width: 200px;
+    width: 800px;
+    height: 600px;
+}
+
+h1 {
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+.lists-container{
+    height:100%;
+    background: var(--white);
+    padding: 30px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    overflow: auto;
+
+    
+}
+
+.lists-container-md{
+    height: 80px;
+    background: var(--white);
+    padding: 0 30px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+}
+
+.lists-subcontainer{
+    width: 100%;
+}
+
+ .mat-form-field{
+    width: 100%;
+    padding-top:20px;
+    margin-right: 15px;
+}
+
+.tasks-container{
+    height: 100%;
+    background: var(--gray);
+    padding: 30px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: auto;
+    height: 100%;
+}
+
+.tasks-subcontainer{
+    width: 100%;
+}
+
+.mat-raised-button.mat-success,
+.mat-flat-button.mat-success,
+.mat-fab.mat-success,
+.mat-mini-fab.mat-success {
+    color: var(--white);
+    background-color: var(--primary);
+
+    &.add-list-button{
+        width: 100%;
+    }
+
+}
+
+.mat-list-option{
+    &.mat-list-option[aria-selected="true"] {
+        background: var(--secondary);
+    }
+
+    &.task{
+        margin:5px 0;
+        background: var(--white);
+        border-radius: 5px;
+
+        &.mat-list-option[aria-selected="true"] {
+            
+            text-decoration: line-through;
+            }
+
+    }
+    
+    
+}
+
+
+
+.mat-pseudo-checkbox{
+    display: none !important;  
+}
