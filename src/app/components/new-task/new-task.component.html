@@ -1,0 +1,11 @@
+<h1>New Task</h1>
+<form [formGroup]="taskForm" fxLayout="row"  fxLayoutAlign="center center">
+    <mat-form-field appearance="outline">
+        <mat-label>New Task Title</mat-label>
+        <input #titleTaskInput matInput formControlName="title" name="title" placeholder="List title">
+        <mat-hint>type a title to your new task</mat-hint>
+    </mat-form-field>
+    <button mat-mini-fab color="success" aria-label="add icon" (click)="createNewTask(titleTaskInput.value)" > <!--[routerLink]="['/lists',urlId]"-->
+        <mat-icon>add</mat-icon>
+    </button>
+</form>

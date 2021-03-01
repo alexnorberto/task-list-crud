@@ -1,65 +1,94 @@
-<div class="centered-container" fxLayout="row" fxLayoutAlign="center center">
+<div class="centered-container" fxLayout="column" fxLayoutAlign="center center">
+    
     <div class="main-container"  fxLayout="row" fxLayoutAlign="center center" fxFlex.lt-md="70%"
-        fxLayout.lt-md="column" fxLayoutAlign.lt-md=""
-    >
-        <div class="lists-container" fxFlex="30%" fxLayout="column" fxLayoutAlign="space-between start" fxHide.lt-md>
-            <div class="lists-subcontainer">            
-                <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <h1>Lists</h1>
-                    <mat-icon>settings</mat-icon>
-                </div>
+        fxLayout.lt-md="column" fxLayoutAlign.lt-md="">
+        <div class="lists-container" fxLayout="column" fxLayoutAlign="space-between start" fxHide.lt-md>
+            
+            <div style="width: 100%" fxLayout="row" fxLayoutAlign="space-between center">
+                <h1>Lists</h1>
+            </div>
+
+            <div class="lists-subcontainer">
                 
-                <mat-selection-list #lists [multiple]="false">
-                    <mat-list-option *ngFor="let list of listOfLists" [value]="list">
-                    {{list}}
+                <mat-selection-list #lists [multiple]="false"  >
+                    <mat-list-option *ngFor="let list of listOfLists, let i = index " [selected]="urlId === list._id" [routerLink]="['/lists',list._id]" cdkTextareaAutosize cdkAutosizeMaxRows="5">
+                    {{list.title}}
                     </mat-list-option>
                 </mat-selection-list>
             </div>
-              <button mat-flat-button color="success" class="add-list-button"><mat-icon>add</mat-icon>List</button>
-
+              <button mat-flat-button color="success" class="add-list-button" (click)="openNewList()"><mat-icon>add</mat-icon>List</button>
+              
         </div>
 
+
+        <!--LIST LISTS LT-MD SCREEN-->
         <div class="lists-container-md" fxLayout="row" fxLayoutAlign="space-between center" fxHide.gt-sm>
             
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Lists</mat-label>
-                    <mat-select>
-                      <mat-option *ngFor="let food of foods" [value]="food.value">
-                        {{food.viewValue}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                
+            <mat-form-field appearance="fill">
+                <mat-label>Lists</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let list of listOfLists" [value]="list" [routerLink]="['/lists',list._id]" routerLinkActive="mat-list-single-selected-option">
+                    {{list.title}}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
             
+        
 
-            <button mat-mini-fab color="success" aria-label="Example icon button with a add icon">
-                <mat-icon>add</mat-icon>
-              </button>
+            <button mat-flat-button color="success" (click)="openNewList()"><mat-icon>add</mat-icon></button>
 
         </div>
 
+        <!--TASK LIST-->
+        <div class="tasks-container" fxFlex="560px" fxFlex.lt-md="100%" fxLayout="column" fxLayoutAlign="start center" >
 
-
-        <div class="tasks-container" fxFlex="70%" fxLayout="column" fxLayoutAlign="space-between end" fxLayout.lt-md="column-reverse">
-            <div class="tasks-subcontainer">
-
-                <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <h1>Tasks</h1>
-                    <mat-icon>settings</mat-icon>
+            <!-- TASK LIST HEADER  -->
+            <div class="tasks-header">
+                <div fxLayout="row" fxLayoutAlign="space-between start">
+                    <div>
+                        <h1>{{activeListTitle}}</h1>
+                        <h2>Tasks</h2>
+                    </div>
+                    <div *ngIf="urlId">
+                        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></button>
+                        <mat-menu #menu="matMenu" yPosition="below" xPosition="before">
+                            <button mat-menu-item (click)="openEditList()">Edit List Title</button>
+                            <button mat-menu-item (click)="openConfirmDelete('list',urlId)">Delete Current List</button>
+                        </mat-menu>
+                    </div>
                 </div>
 
-                <mat-selection-list  #tasks [multiple]="true">
-                    <mat-list-option *ngFor="let task of listOfTasks" class="task" [value]="task">
-                    {{task}}
-                    </mat-list-option>
-                </mat-selection-list>
+                <!-- IF NO LIST SELECTED TEXT AREA -->
+
+                <div *ngIf="!urlId">No list selected. Select a list to show tasks.</div>
+            </div>
+
+            <!-- TASKS -->
+
+            <div class="tasks-subcontainer" *ngIf="urlId" fxLayout="column" fxLayoutAlign="start start" >   
+
+
+                <div class="full-task-list" *ngFor="let task of listOfTasks"
+                fxLayout="row" fxLayoutAlign="center center" 
+            >
+                <div class="task" (click)="onClickTask(task)" [ngClass]="{ 'completed': task.completed }">
+                    <span>{{ task.title }}</span>
+                </div>
+                
+                <div class="task-actions" fxLayout="row" fxLayoutAlign="center center" >
+                    <button  class="actions" mat-icon-button color="success" aria-label="edit" (click)="openEditTask(task)" ><mat-icon>edit</mat-icon></button>
+                    <button  class="actions" mat-icon-button color="success" aria-label="delete" (click)="openConfirmDelete('task',task._id)"  ><mat-icon>delete</mat-icon></button>
+                </div>
+            </div>
+
+                <button mat-mini-fab color="success" aria-label="Example icon button with a add icon" (click)="openNewTask()"  style="position: absolute; bottom: 20px; right: 20px;">
+                    <mat-icon>add</mat-icon>
+                </button>
 
             </div>
 
-            <button mat-mini-fab color="success" aria-label="Example icon button with a add icon">
-                <mat-icon>add</mat-icon>
-              </button>
+            
 
         </div>
     </div>

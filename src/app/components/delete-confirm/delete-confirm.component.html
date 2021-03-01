@@ -1,0 +1,11 @@
+<h1>Delete {{taskOrList}}</h1>
+
+<p>Are you sure you want to delete this {{taskOrList}}?</p>
+
+<div style="width: 100%;"  fxLayout="row" fxLayoutAlign="space-between end">
+    <button mat-stroked-button (click)="cancelDialog()">Cancel</button>
+
+    <button mat-raised-button color="warn" aria-label="add icon" (click)="delete()" [routerLink]="['/lists']">
+        <mat-icon>delete</mat-icon>Confirm
+    </button>
+</div>

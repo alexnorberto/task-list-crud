@@ -1,0 +1,11 @@
+<h1>New List</h1>
+<form [formGroup]="listForm" fxLayout="row"  fxLayoutAlign="center center">
+    <mat-form-field appearance="outline">
+        <mat-label>New List Title</mat-label>
+        <input #titleListInput matInput formControlName="title" name="title" placeholder="List title">
+        <mat-hint>type a title to your new list</mat-hint>
+    </mat-form-field>
+    <button mat-mini-fab color="success" aria-label="add icon" (click)="createNewList(titleListInput.value)" [routerLink]="['/lists',newId]">
+        <mat-icon>add</mat-icon>
+    </button>
+</form>

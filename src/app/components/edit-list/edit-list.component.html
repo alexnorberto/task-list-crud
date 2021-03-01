@@ -1,0 +1,16 @@
+<h1>Edit List</h1>
+<form [formGroup]="listForm" fxLayout="column"  fxLayoutAlign="center center">
+    <mat-form-field appearance="outline">
+        <mat-label>Edit List</mat-label>
+        <input #titleListInput matInput formControlName="title" name="title" placeholder="List title">
+        <mat-hint>type a new title to your list</mat-hint>
+    </mat-form-field>
+
+    <div style="width: 100%;"  fxLayout="row" fxLayoutAlign="space-between end">
+        <button mat-stroked-button (click)="cancelDialog()">Cancel</button>
+    
+        <button mat-raised-button color="success" aria-label="edit icon" (click)="editList(titleListInput.value)" [routerLink]="['/lists',urlId]">
+            <mat-icon>edit</mat-icon>Edit
+        </button>
+    </div>
+</form>

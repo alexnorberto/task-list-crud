@@ -15,20 +15,41 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NewListComponent } from './components/new-list/new-list.component';
+import { NewTaskComponent } from './components/new-task/new-task.component';
+import { EditListComponent } from './components/edit-list/edit-list.component';
+import { EditTaskComponent } from './components/edit-task/edit-task.component';
+import { DeleteConfirmComponent } from './components/delete-confirm/delete-confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TaskListComponent
+    TaskListComponent,
+    NewListComponent,
+    NewTaskComponent,
+    EditListComponent,
+    EditTaskComponent,
+    DeleteConfirmComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FlexLayoutModule, 
     FormsModule, ReactiveFormsModule,
+    
 
-    MatTabsModule, MatGridListModule, MatListModule, MatButtonModule, MatIconModule, MatSelectModule
+    MatTabsModule, MatGridListModule, MatListModule, MatButtonModule, MatIconModule, MatSelectModule, MatDialogModule,
+    MatInputModule, MatFormFieldModule, MatMenuModule, MatSnackBarModule, MatCheckboxModule
 
   ],
   providers: [],
